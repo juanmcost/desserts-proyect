@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib import admin
+from django.core.validators import MinValueValidator
 
 # Create your models here.
 
@@ -11,7 +13,7 @@ class Tag(models.Model):
 class Dessert(models.Model):
     name = models.TextField(max_length=100)
     picture = models.ImageField(upload_to ='uploads/desserts-pics/', max_length=100)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(1)])
     tags = models.ManyToManyField(Tag, related_name="desserts")
 
 
@@ -32,3 +34,7 @@ class Order(models.Model):
 
     def __str__(self):
         return self.created_at + " $"+self.charge
+
+admin.site.register(Tag)
+admin.site.register(Dessert)
+admin.site.register(Order)
