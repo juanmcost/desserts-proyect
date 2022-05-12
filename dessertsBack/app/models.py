@@ -21,19 +21,19 @@ class Dessert(models.Model):
         return self.name + " ($" + self.price +")"
 
 class Order(models.Model):
-    charge = models.DecimalField(max_digits=10, decimal_places=2)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
     desserts = models.ManyToManyField(Dessert, related_name="orders")
     created_at = models.DateTimeField(auto_now_add=True)
     comments = models.TextField(max_length=500)
 
     def save(self, *args, **kwargs):
-        self.charge = 0
+        self.amount = 0
         for item in self.desserts:
-            self.charge = self.charge + item.price
+            self.amount = self.amount + item.price
         super(Order, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.created_at + " $"+self.charge
+        return self.created_at + " $"+self.amount
 
 admin.site.register(Tag)
 admin.site.register(Dessert)
