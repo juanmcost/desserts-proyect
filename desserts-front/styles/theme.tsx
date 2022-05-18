@@ -6,6 +6,7 @@ const colors = {
     800: '#153e75',
     700: '#2a69ac',
   },
+  background: 'white',
 }
 
 const config = {
@@ -17,10 +18,16 @@ const shadows = {
   outline: "0 0 0 3px rgba(66, 153, 225, 0)",
 }
 
+const fonts = {
+  heading: 'Montserrat.700, sans-serif',
+  body: 'Montserrat.100, sans-serif',
+}
+
 const theme = extendTheme({ 
   colors, 
   config,
   shadows,
+  fonts
 })
 
 export default theme

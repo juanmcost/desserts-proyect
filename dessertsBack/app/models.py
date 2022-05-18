@@ -19,7 +19,7 @@ class Dessert(models.Model):
 
 
     def __str__(self):
-        return self.name + " ($" + self.price +")"
+        return self.name + " ($" + str(self.price) +")"
 
 class Order(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
